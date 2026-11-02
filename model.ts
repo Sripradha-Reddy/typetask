@@ -37,3 +37,4 @@ export function filterByStatus(tasks: Task[], status: TaskStatus): Task[] {
 export function deleteTask(tasks: Task[], id: number): Task[] {
   return tasks.filter((task) => task.id !== id);
 }// Part 1 deliverable completed
+// Part 1 deliverable completed
