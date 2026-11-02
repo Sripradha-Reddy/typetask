@@ -36,4 +36,4 @@ export function filterByStatus(tasks: Task[], status: TaskStatus): Task[] {
 // 6. Custom Operation (Required by Assignment: Originality requirement)
 export function deleteTask(tasks: Task[], id: number): Task[] {
   return tasks.filter((task) => task.id !== id);
-}
+}// Part 1 deliverable completed
