@@ -1,39 +1,39 @@
-// 1. TaskStatus Union
-type TaskStatus = "todo" | "in-progress" | "done";
 
-// 2. Task Interface
-interface Task {
+export type TaskStatus = "todo" | "in-progress" | "done";
+
+export interface Task {
   id: number;
   title: string;
   status: TaskStatus;
 }
 
-// Unique ID counter
-let nextId = 1;
-
-// 3. addTask Operation
-function addTask(tasks: Task[], title: string): Task[] {
+export function addTask(tasks: Task[], title: string): Task[] {
   const newTask: Task = {
-    id: nextId++,
+    id: Date.now(),
     title: title,
-    status: "todo",
+    status: "todo"
   };
+
   return [...tasks, newTask];
 }
 
-// 4. completeTask Operation
-function completeTask(tasks: Task[], id: number): Task[] {
-  return tasks.map((task) =>
-    task.id === id ? { ...task, status: "done" } : task
+export function updateTaskStatus(
+  tasks: Task[],
+  id: number,
+  status: TaskStatus
+): Task[] {
+  return tasks.map(task =>
+    task.id === id ? { ...task, status } : task
   );
 }
 
-// 5. filterByStatus Operation
-function filterByStatus(tasks: Task[], status: TaskStatus): Task[] {
-  return tasks.filter((task) => task.status === status);
-}
+export function filterByStatus(
+  tasks: Task[],
+  status: TaskStatus | "all"
+): Task[] {
+  if (status === "all") {
+    return tasks;
+  }
 
-// 6. Custom Operation: deleteTask
-function deleteTask(tasks: Task[], id: number): Task[] {
-  return tasks.filter((task) => task.id !== id);
+  return tasks.filter(task => task.status === status);
 }
